@@ -73,7 +73,7 @@ const currencies = new Map([
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
-/////////////////////////////////////////////////
+//////////Display / Sort Movements///////////////////////
 const displayMovements = function (movements){
   containerMovements.innerHTML='';
 
@@ -90,3 +90,12 @@ const displayMovements = function (movements){
   });
 };
 displayMovements(account1.movements)
+
+//////////Create User Names//////////////////////////////
+const createUserNames = function(accs){
+  accs.forEach(function(acc){
+    acc.username = acc.owner.toLowerCase().split(' ').map(name => name[0]).join('');
+  });
+};
+createUserNames(accounts);
+console.log(accounts);
