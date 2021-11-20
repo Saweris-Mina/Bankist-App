@@ -97,6 +97,24 @@ const calcDisplayBalance = function(movements){
 };
 calcDisplayBalance(account1.movements);
 
+//////////Calculate / Display Summary////////////////////
+const displaySummary = function(movements){
+const income = movements.filter(mov => mov > 0).reduce((acc, mov) => acc + mov, 0);
+labelSumIn.textContent = `${income}€`;
+
+const outgoing = movements.filter(mov => mov < 0).reduce((acc, mov) => acc + mov, 0);
+labelSumOut.textContent=`${Math.abs(outgoing)}€`;
+
+const interest = movements.filter(mov => mov > 0)
+.map(deposit => (deposit * 1.2) / 100)
+.filter((int,i,arr)=>{
+  console.log(arr);
+  return int >=1;})
+.reduce((acc,int) => acc + int, 0);
+labelSumInterest.textContent= `${interest}€`;
+};
+displaySummary(account1.movements);
+
 //////////Create User Names//////////////////////////////
 const createUserNames = function(accs){
   accs.forEach(function(acc){
