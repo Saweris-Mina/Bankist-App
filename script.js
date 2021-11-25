@@ -122,7 +122,16 @@ const createUserNames = function(accs){
   });
 };
 createUserNames(accounts);
-console.log(accounts);
+
+//////////Refactor UI Functions//////////////////////////
+const updateUI = function (acc){
+    // display movements
+    displayMovements(currentAccount.movements);
+    // display balance
+    calcDisplayBalance(currentAccount.movements);
+    // display summary
+    displaySummary(currentAccount);
+};
 
 //////////Activate Login button//////////////////////////
 let currentAccount;
@@ -144,12 +153,8 @@ btnLogin.addEventListener('click', function(e){
     inputLoginUsername.value = inputLoginPin.value = '';
     inputLoginPin.blur();
     inputLoginUsername.blur();
-    // display movements
-    displayMovements(currentAccount.movements);
-    // display balance
-    calcDisplayBalance(currentAccount.movements);
-    // display summary
-    displaySummary(currentAccount);
+
+    updateUI(currentAccount);
   }
 });
 
